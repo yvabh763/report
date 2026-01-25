@@ -1,40 +1,44 @@
-
 #include<stdio.h>
-#include<conio.h>
 #include<graphics.h>
-int main()
+#include<math.h>
+float round(float a);
+void main()
 {
-int x,y,x1,y1,x2,y2,p,dx,dy; int gd=DETECT,gm;
-initgraph(&gd,&gm,"C:\\TurboC3\\BGI");
-printf("\nEnter the x-coordinate of the first point ::");
-scanf("%d",&x1);
-printf("\nEnter the y-coordinate of the first point ::");
-scanf("%d",&y1);
-printf("\nEnter the x-coordinate of the second point ::");
-scanf("%d",&x2);
-printf("\nEnter the y-coordinate of the second point ::");
-scanf("%d",&y2);
-x=x1;
-y=y1;
+mode.
+int gd=DETECT,gm;
+// gd=graphics driver (detects best graphics driver and assigns it as default, gm=graphics
+int x1,y1,x2,y2,steps,k;
+float xincr,yincr,x,y,dx,dy;
+printf("enter x1,y1");
+scanf("%d%d",&x1,&y1);
+printf("enter x2,y2");
+scanf("%d%d",&x2,&y2);
+initgraph(&gd,&gm,"c:\\turboc3\\BGI");//initializes the graph
 dx=x2-x1;
 dy=y2-y1;
-putpixel(x,y,2);
-p=(2*dy-dx);
-while(x<=x2)
-{
-if(p<0)
-{
-}
+if(abs(dx)>abs(dy))
+steps=abs(dx);
 else
+steps=abs(dy);
+xincr=dx/steps;
+yincr=dy/steps;
+x=x1;
+y=y1;
+for(k=1;k<=steps;k++)
 {
-x=x+1;
-p=p+2*dy;
-x=x+1;
-y=y+1;
-p=p+(2*dy)-(2*dx);
+delay(100);//for seeing the line drawing process slowly.
+x+=xincr;
+y+=yincr;
+putpixel(round(x),round(y),WHITE);
 }
-putpixel(x,y,7);
-}
+outtextxy(200,20,"DDA"); // for printing text at desired screen location.
+outtextxy(x1+5,y1-5,"(x1,y1)");
+outtextxy(x2+5,y2+5,"(x2,y2)");
 getch();
-closegraph();
+closegraph(); // closes the graph and comes back to previous graphic mode.
+}
+float round(float a)
+{
+int b=a+0.5;
+return b;
 }
