@@ -1,2 +1,2 @@
-# MY name is Abhimanyu Yadav
-# Studied in cosmos
+# BRESENHAM'S LINE ALGORITHM
+# OUTPUT
